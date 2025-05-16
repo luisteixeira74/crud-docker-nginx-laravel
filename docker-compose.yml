@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    volumes:
+      - ./:/var/www/html
+      - storage:/var/www/html/storage
+      - vendor:/var/www/html/vendor
+    environment:
+      APP_ENV: production
+      APP_DEBUG: 'false'
+      LOG_CHANNEL: stack
+    networks:
+      - laravel-net
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: laravel_nginx
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - laravel-net
+
+volumes:
+  storage:
+  vendor:
+
+networks:
+  laravel-net:
+    driver: bridge

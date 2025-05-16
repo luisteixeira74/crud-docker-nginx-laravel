@@ -1,0 +1,30 @@
+### Listar todos os clientes
+GET http://localhost/api/customers
+Accept: application/json
+
+### Criar novo cliente
+POST http://localhost/api/customers
+Content-Type: application/json
+
+{
+  "name": "João Silva",
+  "email": "joao.silva@example.com",
+  "phone": "11999999999"
+}
+
+### Buscar cliente pelo ID
+GET http://localhost/api/customers/1
+Accept: application/json
+
+### Atualizar cliente
+PUT http://localhost/api/customers/1
+Content-Type: application/json
+
+{
+  "name": "João Silva Atualizado",
+  "email": "joao.novo@example.com"
+}
+
+### Deletar cliente
+DELETE http://localhost/api/customers/1
+Accept: application/json
