@@ -1,9 +1,9 @@
 ### Listar todos os clientes
-GET http://localhost/api/customers
+GET http://localhost:8080/api/customers
 Accept: application/json
 
 ### Criar novo cliente
-POST http://localhost/api/customers
+POST http://localhost:8080/api/customers
 Content-Type: application/json
 
 {
@@ -13,11 +13,11 @@ Content-Type: application/json
 }
 
 ### Buscar cliente pelo ID
-GET http://localhost/api/customers/1
+GET http://localhost:8080/api/customers/1
 Accept: application/json
 
 ### Atualizar cliente
-PUT http://localhost/api/customers/1
+PUT http://localhost:8080/api/customers/1
 Content-Type: application/json
 
 {
@@ -26,5 +26,5 @@ Content-Type: application/json
 }
 
 ### Deletar cliente
-DELETE http://localhost/api/customers/1
+DELETE http://localhost:8080/api/customers/1
 Accept: application/json
