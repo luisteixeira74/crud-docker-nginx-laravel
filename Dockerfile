@@ -32,12 +32,21 @@ RUN apk add --no-cache \
     libxml2-dev
 
 # Instala extensões nativas do PHP para Laravel
+# RUN docker-php-ext-install \
+#     pdo \
+#     pdo_sqlite \
+#     mbstring \
+#     zip \
+#     bcmath
+
 RUN docker-php-ext-install \
     pdo \
-    pdo_sqlite \
+    pdo_mysql \
+    mysqli \
     mbstring \
     zip \
     bcmath
+
 
 # Instala a extensão Redis via PECL
 RUN pecl install redis && docker-php-ext-enable redis

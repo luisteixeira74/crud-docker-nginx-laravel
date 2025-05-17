@@ -5,10 +5,11 @@ Accept: application/json
 ### Criar novo cliente
 POST http://localhost:8080/api/customers
 Content-Type: application/json
+Accept: application/json
 
 {
   "name": "João Silva",
-  "email": "joao.silva@example.com",
+  "email": "joao.silva@2example.com",
   "phone": "11999999999"
 }
 
