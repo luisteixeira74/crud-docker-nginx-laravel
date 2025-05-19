@@ -2,31 +2,42 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Customer;
-use PHPUnit\Framework\Attributes\Test;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CustomerFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
-    #[Test]
-    public function it_creates_a_new_customer(): void
+    /** @test */
+    public function it_creates_a_customer_with_valid_data()
     {
-        $payload = [
-            'name' => 'Maria Oliveira',
-            'email' => 'maria@example.com',
-            'phone' => '11988887777',
+        $data = [
+            'name' => 'João Silva',
+            'email' => 'joao@example.com',
         ];
 
-        $response = $this->postJson('/api/customers', $payload);
+        $response = $this->postJson('/api/customers', $data);
 
         $response->assertStatus(201)
-                 ->assertJsonFragment(['email' => 'maria@example.com']);
+                 ->assertJsonFragment($data);
 
-        $this->assertDatabaseHas('customers', [
-            'email' => 'maria@example.com',
-        ]);
+        $this->assertDatabaseHas('customers', $data);
     }
+
+    /** @test */
+    public function it_fails_to_create_a_customer_with_invalid_data()
+    {
+        $data = [
+            'name' => '',
+            'email' => 'invalid-email',
+        ];
+
+        $response = $this->postJson('/api/customers', $data);
+
+        $response->assertStatus(422)
+                 ->assertJsonValidationErrors(['name', 'email']);
+    }
+
 }

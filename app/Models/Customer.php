@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
 class Customer extends Model
 {
-    use HasUuids;
-
+    use HasUuids, 
+        \Illuminate\Database\Eloquent\Factories\HasFactory;
+        
     protected $fillable = [
         'name', 'email',
     ];
